@@ -1,0 +1,981 @@
+
+// This contains the use of both Scenemanager and P5.play
+// Documentation and additional examples of these libraries can be found at:
+//https://github.com/mveteanu/p5.SceneManager
+//http://molleindustria.github.io/p5.play/
+
+
+var image1_up, image2_over;
+var hi;
+var puto;
+var falcon;
+var zz;
+var calm;
+var melody;
+var weird;
+var pika;
+var yup;
+// var duration;
+// var  slideWidth = 500;
+
+function preload() {
+
+   pika = loadSound("sounds/pikachu.mp3");
+   hi = loadSound("sounds/hai.mp3");
+   puto = loadSound("sounds/puto.mp3");
+   falcon = loadSound("sounds/falconpunch.mp3");
+   zz = loadSound("sounds/sleep.mp3");
+   calm = loadSound("sounds/snowland.mp3");
+   melody = loadSound("sounds/melodytown.mp3");
+   weird = loadSound("sounds/weirdwood.mp3");
+   yup = loadSound("sounds/yip.mp3");
+
+
+}
+
+
+// define your p5.play sprites as global objects first.
+var ship;
+
+
+// global manager object
+var mgr;
+
+
+var scribble = new Scribble();
+
+function setup() {
+    createCanvas(800, 800);
+  //  console.log(hell);
+    // green.loop();
+     mgr = new SceneManager();
+     masterVolume(.05);
+
+     ship = createSprite(0, 0);
+     ship.addAnimation("normal", "assets/ship/Ship 1.png",  "assets/ship/Ship 4.png");
+     ship.addAnimation("stand", "assets/explosion/Shipexp1.png",  "assets/explosion/Shipexp5.png");
+
+    // Preload scenes. Preloading is normally optional
+    // ... but needed if showNextScene() is used.
+    mgr.addScene (scene1);
+    mgr.addScene (scene2);
+    mgr.addScene (scene3);
+    mgr.addScene (scene4);
+    mgr.showNextScene();
+
+}
+
+function draw()
+{
+
+    // passthe current draw function into the SceneManager
+    mgr.draw();
+}
+
+function mousePressed()
+{
+   // pass the mousePressed message into the SceneManager
+  // mgr.mousePressed();
+
+}
+
+function keyPressed()
+{
+    // You can optionaly handle the key press at global level...
+    switch(key)
+    {
+        case 'e':
+            mgr.showScene( scene1 );
+            break;
+        case 's':
+            mgr.showScene( scene2 );
+            break;
+        case 'd':
+            mgr.showScene( scene3 );
+            break;
+        case 'f':
+            mgr.showScene( scene4 );
+            break;
+
+    }
+
+    // ... then dispatch via the SceneManager.
+    // mgr.keyPressed();
+}
+
+
+///////////////////////  1  ////////////////////////
+
+
+
+function scene1()  {
+
+    let bg1;
+
+  this.setup = function() {
+    melody.loop();
+      console.log("home");
+      bg1 = loadImage('images/bg1.jpg');
+
+      click1 = new Clickable();
+      click1.locate(300, 350);
+      click1.resize(200, 100);
+
+      click1.onOutside = function(){
+        this.text = ("Play!");
+        textSize(30);
+        this.color = "#FEC8D8";
+        this.textColor = "#957DAD";
+      }
+
+      // click1.onOutside = function(){
+      //   this.color = "#FFFFFF";
+      // }
+      click1.onPress = function(){
+
+          mgr.showScene( scene2 );
+
+      }
+
+  }
+
+  this.enter = function()
+  {
+
+
+  }
+
+
+
+
+    this.draw = function()
+    {
+
+
+      angleMode(DEGREES);
+
+         let min = minute();
+        let mn = map(min, 0 , 60, 0, 360);
+
+        // background(255);
+        image(bg1, 0, 0);
+
+
+        // push();
+        // shoes();
+        // pop();
+        //
+        // push();
+        // leftArm();
+        // pop();
+        //
+        // push();
+        // rightArm();
+        // pop();
+        //
+        // push();
+        // body();
+        // pop();
+        //
+        // push();
+        //  let x1 = map(mouseX, 0, width, -30, 40);
+        //  let x2 = map(mouseY, 0, height, -30, 40);
+        // translate(x1, x2);
+        // eyes();
+        // pop();
+        //
+        // text("Poyo!", 100, 300);
+        click1.draw();
+        stroke(0);
+        strokeWeight(5);
+        scribble.scribbleRect(400, 400, 200, 100);
+    }
+
+
+
+
+  this.mousePressed = function()
+  {
+
+
+
+}
+
+    this.keyPressed = function()
+    {
+      //console.log("woot");
+      // ghost.changeAnimation("stand");
+        this.sceneManager.showNextScene();
+    }
+
+
+
+}
+
+
+// =============================================================
+// =                         BEGIN SCENES                      =
+// =============================================================
+
+// exmample of global var that can be used between scenes
+
+var hell = "hi";
+var click9;
+
+
+var affection = 0;
+var MAX_AFFECTION = 100;
+var rectWidth = 200;
+// sprite1.collide(sprite2);
+// sprite1.overlap(sprite2);
+// sprite1.displace(sprite2);
+
+
+////////////////////////////// 1 /////////////////
+function scene2()  {
+    var textX;
+    var textY;
+    var lox= 0;
+    let bg2;
+    let pika1;
+    let falcon1;
+    let apple1;
+    let cupcake1;
+
+var quotes = ["Poyo!", "Hai!", "This grass feels funny, it feels like... pants."];
+
+
+// scene1.setup
+    this.setup = function() {
+      // melody.loop();
+      bg2 = loadImage('images/bg3.jpg');
+      pika1 = loadImage('images/pikaicon.png');
+      falcon1 = loadImage('images/falconicon.png');
+      apple1 = loadImage('images/appleicon.png');
+      cupcake1 = loadImage('images/cupcakeicon.png');
+
+      console.log("chat1");
+          hi.playMode('sustain');
+
+
+      // do all stuff you want to initialize things,
+      // as this it need to be called only once.
+      click9 = new Clickable();
+      click9.locate(100, 100);
+      click9.resize(600, 600);
+
+      click9.onOutside = function(){
+      textSize(30);
+      this.color = "#FEC8D8";
+      this.textColor = "#957DAD";
+      }
+
+      // click1.onOutside = function(){
+      //   this.color = "#FFFFFF";
+      // }
+      click9.onPress = function(){
+
+        textSize(30);
+
+
+          mgr.showScene( scene3 );
+
+
+      }
+
+
+    }
+
+    // enter() will be called each time SceneManager switches
+    // to this scene
+
+    this.enter = function()  {
+        console.log("chat1");
+        textX = 10;
+        textY = 0;
+        background("grey");
+        textAlign(CENTER);
+
+
+        console.log("home");
+          console.log(hell);
+      ship.position.x = 300;
+      ship.position.y = 500;
+      ship.changeAnimation("normal");
+
+    //   ship.onMouseOver = function() {
+    //
+    //     hi.play();
+    //     console.log("over");
+    //     this.changeAnimation("stand");
+    //     // this.position.x++;
+    //     text("Poyo!", 400, 500);
+    //
+    // }
+
+
+  }
+
+
+    this.draw = function()
+    {
+      // background(100);
+       image(bg2, 0, 0);
+
+
+
+
+              push();
+              shoes();
+              pop();
+
+              push();
+              leftArm();
+              pop();
+
+              push();
+              rightArm();
+              pop();
+
+              push();
+              body();
+              pop();
+
+              push();
+               let x1 = map(mouseX, 0, width, -30, 40);
+               let x2 = map(mouseY, 0, height, -30, 40);
+              translate(x1, x2);
+              eyes();
+              pop();
+
+
+               // text("Poyo", 100,100);
+
+             //   leftArm.mousePressed = function() {
+             //     aa.play();
+             //     // text("This grass feels funny, it feels like... pants.", 100, 300);
+             //  }
+             //
+             //   rightArm.mousePressed = function() {
+             //    puto.play();
+             //    // text("This grass feels funny, it feels like... pants.", 100, 300);
+             // }
+                 // this.position.x++;
+
+               //   ship.onMouseOver = function() {
+               //
+               //     hi.play();
+               //     console.log("over");
+               //     this.changeAnimation("stand");
+               //     // this.position.x++;
+               //     // textSize(29);
+               //     // click1.locate(300,500);
+               //     // this.text="Poyo";
+               //
+               // }
+
+              click9.draw();
+
+
+              image(pika1, -80, -20);
+              image(falcon1, 100, -20);
+              image(apple1, -80, -80);
+              image(cupcake1, 100,-80);
+
+
+
+
+             stroke(0);
+             strokeWeight(5);
+             scribble.scribbleRect(650,50, rectWidth, 50);
+
+
+           fill(255,200)
+           rect(100,100, 600, 600);
+           fill(0);
+           noStroke();
+           text("Click on all boxes to interact with", 400, 300);
+            text("Kirby and raise the affection", 400, 350);
+            text("bar to the end to win. And on last scene,", 400, 400);
+            text("put your mouse over Kirby.", 400, 450);
+          }
+
+
+
+
+          this.mousePressed = function()
+          {
+
+
+          }
+
+
+    this.keyPressed = function()
+    {
+        this.sceneManager.showNextScene();
+    }
+
+
+}
+
+
+// =============================================================
+// =                         BEGIN SCENES                      =
+// =============================================================
+
+// exmample of global var that can be used between scenes
+
+var hell = "hi";
+var click2;
+var click4;
+var click5;
+var click6;
+var click7;
+
+var affection = 0;
+var MAX_AFFECTION = 100;
+var rectWidth = 200;
+// sprite1.collide(sprite2);
+// sprite1.overlap(sprite2);
+// sprite1.displace(sprite2);
+
+
+////////////////////////////// 1 /////////////////
+function scene3()  {
+    var textX;
+    var textY;
+    var lox= 0;
+    let bg2;
+    let pika1;
+    let falcon1;
+    let apple1;
+    let cupcake1;
+
+var quotes = ["Poyo!", "Hai!", "This grass feels funny, it feels like... pants."];
+
+
+// scene1.setup
+    this.setup = function() {
+      // melody.loop();
+      bg2 = loadImage('images/bg3.jpg');
+      pika1 = loadImage('images/pikaicon.png');
+      falcon1 = loadImage('images/falconicon.png');
+      apple1 = loadImage('images/appleicon.png');
+      cupcake1 = loadImage('images/cupcakeicon.png');
+
+      console.log("chat1");
+          hi.playMode('sustain');
+
+
+      // do all stuff you want to initialize things,
+      // as this it need to be called only once.
+      click2 = new Clickable();
+      click2.locate(150, 550);
+      click2.resize(500, 200);
+
+      click2.onOutside = function(){
+      textSize(30);
+      this.color = "#FEC8D8";
+      this.textColor = "#957DAD";
+      }
+
+      // click1.onOutside = function(){
+      //   this.color = "#FFFFFF";
+      // }
+      click2.onPress = function(){
+        hi.play();
+        textSize(30);
+        this.text = random(quotes);
+        affection += 10;
+        if (affection == 100)
+        {
+
+          mgr.showScene( scene4 );
+        }
+
+      }
+
+
+      click4 = new Clickable();
+      click4.locate(50, 200);
+      click4.resize(100, 100);
+
+      click4.onOutside = function(){
+      textSize(30);
+      }
+
+      // click1.onOutside = function(){
+      //   this.color = "#FFFFFF";
+      // }
+      click4.onPress = function(){
+        pika.play();
+        textSize(30);
+        click2.text = ("I want my ketchup");
+        affection += 10;
+        if (affection == 100)
+        {
+
+          mgr.showScene( scene4 );
+        }
+
+      }
+
+
+      click5 = new Clickable();
+      click5.locate(650, 200);
+      click5.resize(100, 100);
+
+      click5.onOutside = function(){
+      textSize(30);
+      }
+
+      // click1.onOutside = function(){
+      //   this.color = "#FFFFFF";
+      // }
+      click5.onPress = function(){
+        falcon.play();
+        textSize(30);
+        click2.text = ("Falcon Punch!");
+        affection += 10;
+        if (affection == 100)
+        {
+
+          mgr.showScene( scene4 );
+        }
+
+      }
+
+      click6 = new Clickable();
+      click6.locate(650, 400);
+      click6.resize(100, 100);
+
+      click6.onOutside = function(){
+      textSize(30);
+      }
+
+      // click1.onOutside = function(){
+      //   this.color = "#FFFFFF";
+      // }
+      click6.onPress = function(){
+        yup.play();
+        textSize(30);
+        click2.text = ("GIMME!GIMME!GIMME! GIMME!GIMME!GIMME! GIMME!GIMME!GIMME!");
+        affection += 10;
+        if (affection == 100)
+        {
+
+          mgr.showScene( scene4 );
+        }
+
+      }
+
+      click7 = new Clickable();
+      click7.locate(50, 400);
+      click7.resize(100, 100);
+
+      click7.onOutside = function(){
+      textSize(30);
+      }
+
+      // click1.onOutside = function(){
+      //   this.color = "#FFFFFF";
+      // }
+      click7.onPress = function(){
+        puto.play();
+        textSize(30);
+        click2.text = ("bleeeeeeh");
+        affection -= 10;
+        if (affection == 100)
+        {
+
+          mgr.showScene( scene4 );
+        }
+
+      }
+
+    }
+
+    // enter() will be called each time SceneManager switches
+    // to this scene
+
+    this.enter = function()  {
+        console.log("chat1");
+        textX = 10;
+        textY = 0;
+        background("grey");
+        textAlign(CENTER);
+
+
+        console.log("home");
+          console.log(hell);
+      ship.position.x = 300;
+      ship.position.y = 500;
+      ship.changeAnimation("normal");
+
+    //   ship.onMouseOver = function() {
+    //
+    //     hi.play();
+    //     console.log("over");
+    //     this.changeAnimation("stand");
+    //     // this.position.x++;
+    //     text("Poyo!", 400, 500);
+    //
+    // }
+
+
+  }
+
+
+    this.draw = function()
+    {
+      // background(100);
+       image(bg2, 0, 0);
+
+
+
+
+              push();
+              shoes();
+              pop();
+
+              push();
+              leftArm();
+              pop();
+
+              push();
+              rightArm();
+              pop();
+
+              push();
+              body();
+              pop();
+
+              push();
+               let x1 = map(mouseX, 0, width, -30, 40);
+               let x2 = map(mouseY, 0, height, -30, 40);
+              translate(x1, x2);
+              eyes();
+              pop();
+
+
+               // text("Poyo", 100,100);
+
+             //   leftArm.mousePressed = function() {
+             //     aa.play();
+             //     // text("This grass feels funny, it feels like... pants.", 100, 300);
+             //  }
+             //
+             //   rightArm.mousePressed = function() {
+             //    puto.play();
+             //    // text("This grass feels funny, it feels like... pants.", 100, 300);
+             // }
+                 // this.position.x++;
+
+               //   ship.onMouseOver = function() {
+               //
+               //     hi.play();
+               //     console.log("over");
+               //     this.changeAnimation("stand");
+               //     // this.position.x++;
+               //     // textSize(29);
+               //     // click1.locate(300,500);
+               //     // this.text="Poyo";
+               //
+               // }
+
+              click2.draw();
+              click4.draw();
+              click5.draw();
+              click6.draw();
+              click7.draw();
+
+              image(pika1, -80, -20);
+              image(falcon1, 100, -20);
+              image(apple1, -80, -80);
+              image(cupcake1, 100,-80);
+
+              chatbox();
+              // Change color
+              if (affection < 25)
+              {
+              fill(255, 153, 153);
+              }
+              else if (affection < 50)
+              {
+              fill(255, 102, 153);
+              }
+              else
+              {
+              fill(204, 51, 102);
+              }
+
+ // Draw bar
+              noStroke();
+ // Get fraction 0->1 and multiply it by width of bar
+              var drawWidth = (affection / MAX_AFFECTION) * rectWidth;
+              rect(550, 30, drawWidth, 50);
+
+ // Outline
+             stroke(0);
+             scribble.scribbleRect(650,50, rectWidth, 50);
+
+
+
+          }
+
+
+
+
+          this.mousePressed = function()
+          {
+
+
+          }
+
+
+    this.keyPressed = function()
+    {
+        this.sceneManager.showNextScene();
+    }
+
+
+}
+
+
+
+
+////////////////////////////// 3 /////////////////
+
+var click3;
+
+function scene4() {
+
+
+    var oAnim = null;
+    let bg3;
+
+
+    this.setup = function()  {
+      melody.stop();
+      calm.loop();
+        console.log("chat2");
+        // access a different scene using the SceneManager
+
+        end = loadImage('images/end.jpg');
+
+        click3 = new Clickable();
+        click3.locate(50, 650);
+        click3.resize(200, 100);
+
+        click3.onOutside = function(){
+          this.text = ("You win!");
+          textSize(30);
+          this.color = "#FEC8D8";
+          this.textColor = "#957DAD";
+        }
+
+
+        click3.onMouseOver = function() {
+
+          this.text = ("Home Screen");
+
+            }
+
+        // click1.onOutside = function(){
+        //   this.color = "#FFFFFF";
+        // }
+        click3.onPress = function(){
+
+            mgr.showScene( scene1 );
+
+        }
+
+    }
+
+
+
+
+
+
+    this.enter = function()
+    {
+
+     //ghosty.visible = false;
+     ship.position.x = 550;
+     ship.position.y = 550;
+     ship.scale = 2;
+
+
+     ship.onMouseOver = function() {
+
+       zz.loop();
+       console.log("zzz");
+       this.changeAnimation("stand");
+       // this.position.x-=15 ;
+     }
+
+
+     ship.onMouseOut = function() {
+
+        zz.stop();
+        console.log("no zzz");
+        this.changeAnimation("normal");
+        // this.position.x++ ;
+
+    }
+
+    }
+
+
+
+
+    this.draw = function() {
+      background(10);
+      image(end, 0, 0);
+
+      click3.draw();
+
+      stroke(0);
+      strokeWeight(5);
+      scribble.scribbleRect(150, 700, 200, 100);
+
+
+          }
+
+    this.keyPressed = function()  {
+
+       this.sceneManager.showNextScene();
+    }
+
+}
+
+
+        // var yCoords = [ ytop, ytop, ybottom, ybottom ];
+        var xCoords1 = [ 290, 300, 330, 360, 385, 387, 330, 290, 250, 230, 200, 190, 200, 210, 220, 230];
+        // the y coordinates of the border points of the hachure
+        var yCoords1 = [ 478, 480, 480, 500, 520, 580, 621, 625, 615, 610, 587, 550, 530, 510, 496, 490];
+
+        var xCoords2 = [ 510, 520, 560, 590, 605, 606, 560, 510, 470, 450, 420, 410, 420, 430, 440, 450];
+        var yCoords2 = [ 478, 480, 480, 500, 520, 580, 621, 625, 615, 610, 587, 550, 530, 510, 496, 490];
+
+        var xCoords3 = [ 200, 225, 250, 275, 300, 400, 500, 525, 550, 575, 600, 575, 550, 525, 500, 450, 400, 300, 275, 250, 225];
+        var yCoords3 = [ 350, 250, 220, 200, 180, 150, 180, 200, 220, 250, 350, 450, 490, 500, 520, 535, 550, 525, 500, 480, 450];
+
+        var xCoords4 = [ 350, 365, 375, 380, 365, 350, 335, 320];
+        var yCoords4 = [ 240, 285, 295, 300, 350, 360, 350, 300];
+
+        var xCoords5 = [ 350, 365, 375, 365, 350, 335, 330, 325];
+        var yCoords5 = [ 240, 250, 280, 290, 300, 290, 280, 270];
+
+        var xCoords6 = [ 325, 335, 350, 365, 375, 365, 350, 335];
+        var yCoords6 = [ 300, 320, 325, 320, 300, 340, 355, 340];
+
+        var xCoords7 = [ 155, 155, 645, 645];
+        var yCoords7 = [ 555, 745, 745, 555];
+
+        var gap = 3.5;
+        // the angle of the hachure in degrees
+        var angle = 15;
+
+function shoes(){
+      beginShape();
+
+        stroke( 255, 0, 0 );
+        strokeWeight(10);
+        scribble.scribbleEllipse( 290, 550, 200, 150 );
+        scribble.scribbleEllipse( 510, 550, 200, 150 );
+        scribble.scribbleFilling( 100, 200, 3.5, 315 );
+        strokeWeight( 3 );
+        // fill the rect with a hachure
+        scribble.scribbleFilling( xCoords1, yCoords1 , gap, angle );
+        scribble.scribbleFilling( xCoords2, yCoords2 , gap, angle );
+
+      endShape(CLOSE);
+    }
+
+function rightArm(){
+      beginShape();
+        stroke( 255, 166, 201 );
+        strokeWeight(10);
+        scribble.scribbleEllipse( 550, 380, 200, 150 );
+        translate(40,-170);
+        strokeWeight(3);
+        scribble.scribbleFilling( xCoords2, yCoords2 , gap, angle );
+      endShape(CLOSE);
+    }
+
+function leftArm(){
+      beginShape();
+        stroke( 255, 166, 201 );
+        strokeWeight(10);
+        scribble.scribbleEllipse( 250, 380, 200, 150 );
+        translate(-42,-170);
+        strokeWeight(3);
+        scribble.scribbleFilling( xCoords1, yCoords1 , gap, angle );
+     endShape(CLOSE);
+     }
+
+function body(){
+      beginShape();
+        stroke( 255, 166, 201 );
+        strokeWeight(10);
+        scribble.scribbleEllipse( 400, 350, 400, 400 );
+
+        strokeWeight(3);
+        scribble.scribbleFilling( xCoords3, yCoords3 , gap, angle );
+     endShape(CLOSE);
+     }
+
+
+function eyes(){
+     beginShape();
+        stroke(0);
+        strokeWeight(10);
+        scribble.scribbleEllipse( 350, 300, 50, 120 );
+        // scribble.scribbleEllipse( 450, 300, 50, 120 );
+
+        strokeWeight(3);
+        scribble.scribbleFilling( xCoords4, yCoords4 , gap, angle );
+
+        stroke(255);
+        scribble.scribbleFilling( xCoords5, yCoords5 , gap, angle );
+
+        stroke(22, 155, 215);
+        scribble.scribbleFilling( xCoords6, yCoords6 , gap, angle );
+
+
+        stroke(0);
+        strokeWeight(8);
+        scribble.scribbleEllipse( 400, 400, 5, 10 );
+        scribble.scribbleEllipse( 400, 400, 10, 30 );
+
+
+        translate(100,0);
+        stroke(0);
+        strokeWeight(10);
+        scribble.scribbleEllipse( 350, 300, 50, 120 );
+
+        strokeWeight(3);
+        scribble.scribbleFilling( xCoords4, yCoords4 , gap, angle );
+
+        stroke(255);
+        scribble.scribbleFilling( xCoords5, yCoords5 , gap, angle );
+
+        stroke(22, 155, 215);
+        scribble.scribbleFilling( xCoords6, yCoords6 , gap, angle );
+     endShape(CLOSE);
+         }
+
+function chatbox(){
+      beginShape();
+      // stroke(255);
+      // strokeWeight(3);
+      // scribble.scribbleFilling( xCoords7, yCoords7 , gap, angle );
+
+      stroke(0);
+      strokeWeight(10);
+      noFill();
+      scribble.scribbleRect(400,650,500,200);
+
+      endShape(CLOSE);
+  }

@@ -1,0 +1,68 @@
+
+void setup() {
+  size(800, 600);
+  background(230,30,100);
+  Float a = 0.0;
+  float inc = TWO_PI/10.0;
+  println(" The inc = " + inc);
+  
+  for (int i=10; i<500; i+=10) {
+    line(i*10, 30, i*5, 100+sin(a)*60.0);
+    println(" The angle = " + a + "The sin = " + sin(a));
+    stroke(255);
+  }
+   for (int i=30; i<500; i+=30) {
+    line(i+10, 80+sin(a)*10.0, i+20, 100);
+    println(" The angle = " + a + "The sin = " + sin(a));
+    stroke(0,255,0);
+  }
+  for (int i = 40; i < 1155; i += 40) {
+    
+    if ( i < 60) {
+      fill(200,200, 200);
+      stroke(255);
+      triangle(10*i, 1200+i, 1200 + i, 12* i, i, i);
+      
+    } else {
+      fill(0,255,0);
+      stroke(0, 0, 200);
+      rect( i, i, i, i);
+    }
+  }
+}
+
+
+
+float randR = random(255);
+float randB = random(255);
+float randG = random(255);
+float rand = 0;
+String gridName = "Angle";
+float t = 0;
+float a = 0.0;
+float inc= TWO_PI/60.0;
+
+
+void draw() {
+  for (int i = 10; i < 770; i += 10) {
+    for (int j = 10; j < 600; j += 10) {
+      randR = random(255);
+      randB = random(255);
+      randG = random(255);
+      fill(randR,randB,randG);
+      triangle( i, j, i+20, j+20, i+40, j+40 );
+      println(gridName + ", now has a fill value of " + randR);
+      stroke(randR,randB,randG);
+      
+    }
+  
+    line(t, 100, t, 100+sin(a)*200.0);
+    println(" The angle = " + a + "The sin = " + sin(a));
+    stroke(255);
+    a = a + inc;
+    
+    t+=4;
+  }
+  saveFrame("frames/proj1anim_#####.png");
+
+}
