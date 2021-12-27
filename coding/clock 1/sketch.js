@@ -6,7 +6,7 @@ let cr;
 let col;
 
 function setup() {
-  createCanvas(800,800);
+  createCanvas(1900, 800);
   angleMode(DEGREES);
   // background(255, 238, 210);
   background(255);
@@ -25,31 +25,16 @@ function draw() {
  let sec = second();
  let session = "AM";
 
-//  if(hr > 0){
-//   hr = hr - 12;
-//   session = "PM";
-//   background(211, 238, 255, 200);
-// }
-
- // var a = n * 137.5;
- // var r = c * sqrt(n);
- // var x = r * cos(a) + width/2;
- // var y = r * sin(a) + height/2;
- // noFill();
- // stroke(255,0,0);
- // translate(0);
- // ellipse(x - 400, y - 400, 5,5);
- // n++;
 
  stroke(133, 103, 232);
  noFill();
  let sc = map(sec, 0, 60, 0, 360);
- //arc(0,0,600,600,0,sc);
+
 
   stroke(232, 103, 138);
   noFill();
   let mn = map(min, 0 , 60, 0, 360);
-  //arc(0, 0, 540, 540, 0, mn);
+
 
   stroke(202, 153, 102);
   noFill();
