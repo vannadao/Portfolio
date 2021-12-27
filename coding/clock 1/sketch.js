@@ -6,7 +6,8 @@ let cr;
 let col;
 
 function setup() {
-  createCanvas(1900, 800);
+  var canvas = createCanvas(1900, 800);
+  canvas.parent('sketch-holder');
   angleMode(DEGREES);
   // background(255, 238, 210);
   background(255);
