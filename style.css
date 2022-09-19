@@ -12,12 +12,14 @@ a {
 }
 
 p {
- font-size: 2em;
+ padding: 30px 30px 20px;
+ font-size: 20px;
  font-family: 'Roboto', sans-serif;
+ line-height: 25px;
 }
 
 h1 {
- font-size: 20;
+ font-size: 20px;
  font-family: 'Roboto', sans-serif;
 }
 
@@ -139,10 +141,6 @@ h1 {
   margin-bottom: 30px; /* Add a bottom margin to avoid content overlay */
 }
 
-.ex1 {
-  width: 100%;
-}
-
 .page {
   width: 100%;
 }
@@ -170,7 +168,6 @@ h1 {
 
   .navbar-links li{
     text-align: center;
-    width: 100%;
   }
 
   .navbar-links li a{
@@ -215,8 +212,11 @@ h1 {
 
   }
 
-  .ex1 {
-    width: 100%;
+  p {
+   padding: 0px 20px 0px;
+   font-size: 20px;
+   font-family: 'Roboto', sans-serif;
+   line-height: 25px;
   }
 
   .page {
